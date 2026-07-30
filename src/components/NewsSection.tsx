@@ -20,7 +20,7 @@ export default function NewsSection() {
           />
 
           <div className="space-y-6 mt-12">
-            {societyData.news.map((newsItem, index) => (
+            {(societyData.news || []).map((newsItem, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, x: -20 }}

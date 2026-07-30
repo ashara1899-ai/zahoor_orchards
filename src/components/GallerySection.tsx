@@ -1,26 +1,47 @@
-'use client';
+'use client'
 
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { societyData } from '@/data/society';
+import { societyData, basePath } from '@/data/society';
 import SectionHeader from '@/components/SectionHeader';
 
 export default function GallerySection() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: 'easeOut' as const },
+    },
+  }
+
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
+  const galleryImages = useMemo(() => societyData.galleryImages || [], [])
   const selectedIndex = selectedImage
-    ? societyData.galleryImages.indexOf(selectedImage)
+    ? galleryImages.indexOf(selectedImage)
     : -1;
 
   const goNext = useCallback(() => {
-    const next = (selectedIndex + 1) % societyData.galleryImages.length;
-    setSelectedImage(societyData.galleryImages[next]);
-  }, [selectedIndex]);
+    const next = (selectedIndex + 1) % galleryImages.length;
+    setSelectedImage(galleryImages[next]);
+  }, [selectedIndex, galleryImages]);
 
   const goPrev = useCallback(() => {
-    const prev = (selectedIndex - 1 + societyData.galleryImages.length) % societyData.galleryImages.length;
-    setSelectedImage(societyData.galleryImages[prev]);
-  }, [selectedIndex]);
+    const prev = (selectedIndex - 1 + galleryImages.length) % galleryImages.length;
+    setSelectedImage(galleryImages[prev]);
+  }, [selectedIndex, galleryImages]);
 
   useEffect(() => {
     if (selectedImage === null) return;
@@ -33,41 +54,25 @@ export default function GallerySection() {
     return () => window.removeEventListener('keydown', onKey);
   }, [selectedImage, goNext, goPrev]);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, ease: 'easeOut' as const },
-    },
-  };
-
-  const basePath = '/zahoor_orchards';
-
   return (
     <section className="bg-surface-dark py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
-        <SectionHeader title="Gallery" subtitle="Explore our beautiful moments" />
-
         <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <SectionHeader title="Gallery" subtitle="Explore our beautiful moments" />
+
+          <motion.div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-12"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
         >
-          {societyData.galleryImages.map((imagePath, index) => (
+          {galleryImages.map((imagePath, index) => (
             <motion.div
               key={index}
               variants={itemVariants}
@@ -130,10 +135,11 @@ export default function GallerySection() {
             </div>
 
             <div className="absolute bottom-6 text-white/60 text-sm">
-              {selectedIndex + 1} / {societyData.galleryImages.length}
+              {selectedIndex + 1} / {galleryImages.length}
             </div>
           </motion.div>
         )}
+        </motion.div>
       </div>
     </section>
   );

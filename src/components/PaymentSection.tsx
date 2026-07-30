@@ -1,27 +1,27 @@
-'use client';
+'use client'
 
 import { motion } from 'framer-motion';
 import { Download, Info } from 'lucide-react';
 import SectionHeader from '@/components/SectionHeader';
-import { societyData } from '@/data/society';
+import { societyData, basePath } from '@/data/society';
 
 export default function PaymentSection() {
   return (
     <section className="py-16 md:py-24 bg-surface-dark">
       <div className="container mx-auto px-4 md:px-6">
-        <SectionHeader 
-          title="Payment Plans" 
-          subtitle="Flexible payment options tailored for your needs"
-        />
-
-        {/* Payment Plans Table */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="mt-12 overflow-x-auto rounded-lg border border-gold/20"
         >
+          <SectionHeader 
+            title="Payment Plans" 
+            subtitle="Flexible payment options tailored for your needs"
+          />
+
+          {/* Payment Plans Table */}
+          <div className="mt-12 overflow-x-auto rounded-lg border border-gold/20">
           <table className="w-full min-w-max">
             <thead>
               <tr className="bg-gold text-black">
@@ -33,7 +33,7 @@ export default function PaymentSection() {
               </tr>
             </thead>
             <tbody>
-              {societyData.paymentPlans.map((plan, index) => (
+              {(societyData.paymentPlans || []).map((plan, index) => (
                 <tr 
                   key={index} 
                   className="border-t border-gold/10 hover:bg-card-bg/50 transition-colors"
@@ -56,7 +56,7 @@ export default function PaymentSection() {
               ))}
             </tbody>
           </table>
-        </motion.div>
+        </div>
 
         {/* Premium Note Callout */}
         <motion.div
@@ -98,7 +98,7 @@ export default function PaymentSection() {
           viewport={{ once: true }}
           onClick={() => {
             const link = document.createElement('a')
-            link.href = '/zahoor_orchards/images/payment_plan.jpg'
+            link.href = `${basePath}/images/payment_plan.jpg`
             link.download = 'Zahoor_Orchards_Payment_Plan.jpg'
             document.body.appendChild(link)
             link.click()
@@ -109,6 +109,7 @@ export default function PaymentSection() {
           <Download className="w-5 h-5" />
           Download Payment Plan
         </motion.button>
+        </motion.div>
       </div>
     </section>
   );

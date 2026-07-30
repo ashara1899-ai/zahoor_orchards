@@ -3,12 +3,12 @@ import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
-  variable: "--font-geist-sans",
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
 const playfair = Playfair_Display({
-  variable: "--font-geist-mono",
+  variable: "--font-playfair",
   subsets: ["latin"],
 });
 

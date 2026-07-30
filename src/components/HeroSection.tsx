@@ -2,7 +2,7 @@
 
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { societyData } from '@/data/society'
+import { societyData, basePath } from '@/data/society'
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLDivElement>(null)
@@ -20,7 +20,7 @@ export default function HeroSection() {
   return (
     <section ref={sectionRef} className="relative w-full overflow-hidden">
       <img
-        src="/zahoor_orchards/images/banner.jpg"
+        src={`${basePath}/images/banner.jpg`}
         alt=""
         className="w-full h-auto block"
       />
@@ -34,7 +34,7 @@ export default function HeroSection() {
             className="mb-[3%] w-[22vw] h-[22vw] min-w-[60px] min-h-[60px] max-w-[350px] max-h-[350px] rounded-full overflow-hidden border-4 border-gold flex-shrink-0 origin-top-left"
           >
             <img
-              src="/zahoor_orchards/images/logo.jpg"
+              src={`${basePath}/images/logo.jpg`}
               alt="Zahoor Orchards Logo"
               className="w-full h-full object-cover"
             />

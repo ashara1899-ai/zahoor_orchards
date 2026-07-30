@@ -40,18 +40,24 @@ export default function AmenitiesSection() {
   return (
     <section className="bg-[#000000] py-16 md:py-24 lg:py-32">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
-        <SectionHeader
-          title="Amenities"
-          subtitle="World-class facilities and services for your comfort"
-        />
-
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
         >
+          <SectionHeader
+            title="Amenities"
+            subtitle="World-class facilities and services for your comfort"
+          />
+
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+          >
           {amenities.map((amenity: Amenity, index: number) => (
             <motion.div
               key={index}
@@ -69,6 +75,7 @@ export default function AmenitiesSection() {
               </p>
             </motion.div>
           ))}
+        </motion.div>
         </motion.div>
       </div>
     </section>

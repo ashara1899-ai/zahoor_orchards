@@ -1,31 +1,36 @@
 'use client'
 
-import { useState } from 'react'
+import { useForm, ValidationError } from '@formspree/react'
 import { motion } from 'framer-motion'
 import { societyData } from '@/data/society'
 import SectionHeader from '@/components/SectionHeader'
 
 export default function ContactSection() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: '',
-  })
+  const [state, handleSubmit] = useForm('xgogbepw')
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData(prev => ({ ...prev, [name]: value }))
-  }
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (formData.name && formData.email && formData.phone && formData.message) {
-      alert('Thank you for your inquiry! We will get back to you soon.')
-      setFormData({ name: '', email: '', phone: '', message: '' })
-    } else {
-      alert('Please fill in all fields.')
-    }
+  if (state.succeeded) {
+    return (
+      <section className="bg-[#000000] py-20 px-6 md:px-20">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="text-center py-20"
+          >
+            <div className="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-6">
+              <svg className="w-8 h-8 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <h2 className="font-display text-3xl font-semibold text-white mb-4">Thank You!</h2>
+            <p className="text-text-secondary text-lg max-w-md mx-auto">
+              Your message has been sent. We will get back to you soon.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+    )
   }
 
   return (
@@ -43,7 +48,6 @@ export default function ContactSection() {
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12">
-            {/* Left Column - Contact Information */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -51,7 +55,6 @@ export default function ContactSection() {
               viewport={{ once: true }}
               className="space-y-8"
             >
-              {/* Phone */}
               <div>
                 <h3 className="text-white font-semibold text-lg mb-3">Phone</h3>
                 <a
@@ -62,7 +65,6 @@ export default function ContactSection() {
                 </a>
               </div>
 
-              {/* Email */}
               <div>
                 <h3 className="text-white font-semibold text-lg mb-3">Email</h3>
                 <a
@@ -73,7 +75,6 @@ export default function ContactSection() {
                 </a>
               </div>
 
-              {/* Address */}
               <div>
                 <h3 className="text-white font-semibold text-lg mb-3">Address</h3>
                 <p className="text-text-secondary whitespace-pre-line leading-relaxed mb-4">
@@ -89,11 +90,9 @@ export default function ContactSection() {
                 </a>
               </div>
 
-              {/* Social Icons */}
               <div>
                 <h3 className="text-white font-semibold text-lg mb-4">Follow Us</h3>
                 <div className="flex gap-4">
-                  {/* Facebook */}
                   <a
                     href={societyData.facebook}
                     target="_blank"
@@ -105,7 +104,6 @@ export default function ContactSection() {
                     </svg>
                   </a>
 
-                  {/* Instagram */}
                   <a
                     href={societyData.instagram}
                     target="_blank"
@@ -118,7 +116,6 @@ export default function ContactSection() {
                     </svg>
                   </a>
 
-                  {/* TikTok */}
                   <a
                     href={societyData.tiktok}
                     target="_blank"
@@ -133,7 +130,6 @@ export default function ContactSection() {
               </div>
             </motion.div>
 
-            {/* Right Column - Inquiry Form */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -141,64 +137,60 @@ export default function ContactSection() {
               viewport={{ once: true }}
             >
               <form onSubmit={handleSubmit} className="space-y-4">
-                {/* Name */}
                 <div>
                   <label className="block text-text-secondary text-sm mb-2">Name</label>
                   <input
                     type="text"
                     name="name"
-                    value={formData.name}
-                    onChange={handleChange}
+                    required
                     className="bg-card-bg border border-white/10 rounded-lg p-3 w-full text-white placeholder-text-secondary/50 focus:border-gold focus:outline-none transition duration-300"
                     placeholder="Your Name"
                   />
+                  <ValidationError field="name" errors={state.errors} />
                 </div>
 
-                {/* Email */}
                 <div>
                   <label className="block text-text-secondary text-sm mb-2">Email</label>
                   <input
                     type="email"
                     name="email"
-                    value={formData.email}
-                    onChange={handleChange}
+                    required
                     className="bg-card-bg border border-white/10 rounded-lg p-3 w-full text-white placeholder-text-secondary/50 focus:border-gold focus:outline-none transition duration-300"
                     placeholder="your@email.com"
                   />
+                  <ValidationError field="email" errors={state.errors} />
                 </div>
 
-                {/* Phone */}
                 <div>
                   <label className="block text-text-secondary text-sm mb-2">Phone</label>
                   <input
                     type="tel"
                     name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
+                    required
                     className="bg-card-bg border border-white/10 rounded-lg p-3 w-full text-white placeholder-text-secondary/50 focus:border-gold focus:outline-none transition duration-300"
                     placeholder="Your Phone Number"
                   />
+                  <ValidationError field="phone" errors={state.errors} />
                 </div>
 
-                {/* Message */}
                 <div>
                   <label className="block text-text-secondary text-sm mb-2">Message</label>
                   <textarea
                     name="message"
-                    value={formData.message}
-                    onChange={handleChange}
+                    required
                     rows={5}
                     className="bg-card-bg border border-white/10 rounded-lg p-3 w-full text-white placeholder-text-secondary/50 focus:border-gold focus:outline-none transition duration-300 resize-none"
                     placeholder="Your message..."
                   />
+                  <ValidationError field="message" errors={state.errors} />
                 </div>
 
-                {/* Submit Button */}
                 <button
                   type="submit"
-                  className="w-full bg-gold text-black font-semibold py-3 rounded-lg hover:bg-gold-dark transition duration-300 mt-6"
+                  disabled={state.submitting}
+                  className="w-full bg-gold text-black font-semibold py-3 rounded-lg hover:bg-gold-dark transition duration-300 mt-6 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Send Inquiry
+                  {state.submitting ? 'Sending...' : 'Send Inquiry'}
                 </button>
               </form>
             </motion.div>

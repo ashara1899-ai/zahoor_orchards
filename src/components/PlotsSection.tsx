@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 import { motion } from 'framer-motion';
 import { societyData } from '@/data/society';
@@ -6,10 +6,11 @@ import SectionHeader from '@/components/SectionHeader';
 
 export default function PlotsSection() {
   // Calculate summary stats
-  const availablePlots = societyData.plots.filter(
+  const allPlots = societyData.plots || []
+  const availablePlots = allPlots.filter(
     (plot) => plot.status === 'Available'
   );
-  const soldPlots = societyData.plots.filter(
+  const soldPlots = allPlots.filter(
     (plot) => plot.status === 'Sold'
   );
 
@@ -66,7 +67,7 @@ export default function PlotsSection() {
               </tr>
             </thead>
             <tbody>
-              {societyData.plots.map((plot, index) => (
+              {allPlots.map((plot, index) => (
                 <motion.tr
                   key={plot.id}
                   className={`${
@@ -106,7 +107,7 @@ export default function PlotsSection() {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          {societyData.plots.map((plot, index) => (
+          {allPlots.map((plot, index) => (
             <motion.div
               key={plot.id}
               className="bg-card-bg rounded-xl p-5 border border-gray-800"

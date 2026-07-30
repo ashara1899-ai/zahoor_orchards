@@ -20,7 +20,7 @@ export default function ManagementSection() {
           />
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
-            {societyData.management.map((member, index) => (
+            {(societyData.management || []).map((member, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
@@ -32,8 +32,7 @@ export default function ManagementSection() {
                 {/* Person Icon */}
                 <div className="flex justify-center mb-4">
                   <svg
-                    className="w-8 h-8 md:w-8 md:h-8"
-                    style={{ color: '#D4AF37' }}
+                    className="w-8 h-8 md:w-8 md:h-8 text-gold"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                   >
