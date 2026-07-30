@@ -19,7 +19,7 @@ export default function ManagementSection() {
             subtitle="Meet the visionary leaders guiding Zahoor Orchards"
           />
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mt-12">
             {(societyData.management || []).map((member, index) => (
               <motion.div
                 key={index}

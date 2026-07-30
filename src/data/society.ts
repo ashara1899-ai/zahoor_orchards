@@ -123,10 +123,16 @@ With wide roads, modern sewerage, and 24/7 security, we ensure a safe and comfor
     "10% additional charges for premium plots facing park, corner and main boulevard.",
 
   management: [
-    { name: "Ch. Muhammad Zahoor", role: "Chairman" },
-    { name: "Ch. Shahbaz Ahmad", role: "Chief Executive" },
-    { name: "Ch. Ahsan Zahoor", role: "Director Finance" },
-    { name: "Mr. Ahmad Raza", role: "Project Manager" },
+    { name: "Dr Muzaffar Ali Sheikh", role: "Founder" },
+    { name: "Zafar Chishti", role: "CEO" },
+    { name: "Mian Amjab Bashir", role: "Director" },
+    { name: "Muhammad Nawaz Baloch", role: "Director" },
+    { name: "Sheikh Tahir Hafeez", role: "Director" },
+    { name: "Zubair Chishti", role: "Director" },
+    { name: "Ashar Ali Sheikh", role: "Director" },
+    { name: "Abdullah Ali Hussain", role: "Director" },
+    { name: "Muhammad Ahad Mughal", role: "Director" },
+    { name: "Mian Abid", role: "Director" },
   ] as TeamMember[],
 
   plots: [
