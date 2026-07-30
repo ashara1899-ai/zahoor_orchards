@@ -34,7 +34,7 @@ export interface NewsItem {
   excerpt: string;
 }
 
-export const basePath = '/zahoor_orchards'
+export const basePath = ''
 
 export const societyData = {
   name: "Zahoor Orchards",
