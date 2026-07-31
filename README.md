@@ -43,4 +43,4 @@ Static output in `out/`.
 
 Push to `main` — GitHub Actions builds and deploys to:
 
-**https://muneeb1195.github.io/zahoor_orchards/**
+**https://zahoororchards.com/**
