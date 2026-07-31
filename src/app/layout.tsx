@@ -13,6 +13,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://zahoororchards.com"),
   title: "Zahoor Orchards — Premium Housing Society",
   description:
     "Zahoor Orchards is a premier housing society offering residential & commercial plots with modern amenities including parks, 24/7 security, wide roads, and more.",
@@ -24,6 +25,29 @@ export const metadata: Metadata = {
     "commercial plots",
     "Madhrianwala",
   ],
+  openGraph: {
+    type: "website",
+    url: "/",
+    siteName: "Zahoor Orchards",
+    title: "Zahoor Orchards — Premium Housing Society",
+    description:
+      "Zahoor Orchards is a premier housing society offering residential & commercial plots with modern amenities including parks, 24/7 security, wide roads, and more.",
+    images: [
+      {
+        url: "/images/banner.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Zahoor Orchards — Premium Housing Society",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Zahoor Orchards — Premium Housing Society",
+    description:
+      "Zahoor Orchards is a premier housing society offering residential & commercial plots with modern amenities including parks, 24/7 security, wide roads, and more.",
+    images: ["/images/banner.jpg"],
+  },
 };
 
 export default function RootLayout({
