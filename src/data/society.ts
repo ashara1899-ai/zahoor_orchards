@@ -12,15 +12,18 @@ export interface TeamMember {
 
 export interface Plot {
   size: string;
-  dimensions: string;
-  price: string;
+  dimensions?: string;
+  price: number;
   category: string;
 }
 
 export interface PaymentTier {
   size: string;
-  dimensions: string;
-  totalPrice: string;
+  dimensions?: string;
+  totalPrice: number;
+  downPayment: number;
+  monthlyInstallment: number | null;
+  paymentMode: string;
 }
 
 export interface NewsItem {
@@ -59,13 +62,14 @@ With wide roads, modern sewerage, and 24/7 security, we ensure a safe and comfor
   ] as Amenity[],
 
   paymentPlans: [
-    { size: "5 Marla", dimensions: "25 × 45 ft", totalPrice: "PKR 40 Lac" },
-    { size: "10 Marla", dimensions: "35 × 65 ft", totalPrice: "PKR 80 Lac" },
-    { size: "1 Kanal", dimensions: "50 × 90 ft", totalPrice: "PKR 160 Lac" },
+    { size: "3 Marla", totalPrice: 2400000, downPayment: 800000, monthlyInstallment: 66666.67, paymentMode: "24 monthly installments" },
+    { size: "5 Marla", dimensions: "25 × 45 ft", totalPrice: 4000000, downPayment: 1333333.33, monthlyInstallment: 111111.11, paymentMode: "24 monthly installments" },
+    { size: "10 Marla", dimensions: "35 × 65 ft", totalPrice: 8000000, downPayment: 2666666.67, monthlyInstallment: 222222.22, paymentMode: "24 monthly installments" },
+    { size: "1 Kanal", dimensions: "50 × 90 ft", totalPrice: 16000000, downPayment: 16000000, monthlyInstallment: null, paymentMode: "Full payment only" },
   ] as PaymentTier[],
 
   premiumNote:
-    "These are general residential base prices. Please contact the sales office to confirm plot-specific pricing and availability.",
+    "Prices are based on PKR 8 Lac per Marla. Installment plans are available only in AA and BB Blocks. A and B Blocks are cash-only. A 10% premium applies to park-facing and corner plots. Installments begin in December 2026. The final installment may be adjusted slightly for rounding. Confirm plot-specific availability with the sales office.",
 
   management: [
     { name: "Dr Muzaffar Ali Sheikh", role: "Founder" },
@@ -81,9 +85,10 @@ With wide roads, modern sewerage, and 24/7 security, we ensure a safe and comfor
   ] as TeamMember[],
 
   plots: [
-    { size: "5 Marla", dimensions: "25 × 45 ft", price: "PKR 40 Lac", category: "Residential" },
-    { size: "10 Marla", dimensions: "35 × 65 ft", price: "PKR 80 Lac", category: "Residential" },
-    { size: "1 Kanal", dimensions: "50 × 90 ft", price: "PKR 160 Lac", category: "Residential" },
+    { size: "3 Marla", price: 2400000, category: "Residential" },
+    { size: "5 Marla", dimensions: "25 × 45 ft", price: 4000000, category: "Residential" },
+    { size: "10 Marla", dimensions: "35 × 65 ft", price: 8000000, category: "Residential" },
+    { size: "1 Kanal", dimensions: "50 × 90 ft", price: 16000000, category: "Residential" },
   ] as Plot[],
 
   news: [
