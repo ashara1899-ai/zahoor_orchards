@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar"
 import HeroSection from "@/components/HeroSection"
 import AboutSection from "@/components/AboutSection"
+import WhyZahoorSection from "@/components/WhyZahoorSection"
 import AmenitiesSection from "@/components/AmenitiesSection"
 import GallerySection from "@/components/GallerySection"
 import PlotsSection from "@/components/PlotsSection"
@@ -21,6 +22,7 @@ export default function Home() {
         <section id="about">
           <AboutSection />
         </section>
+        <section id="why-zahoor-orchards"><WhyZahoorSection /></section>
         <section id="amenities">
           <AmenitiesSection />
         </section>
