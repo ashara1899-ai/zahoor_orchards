@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 
 const doctors = [
   {
-    name: "Dr. Musaffar Ali Sheikh",
+    name: "Dr. Muzaffar Ali Sheikh",
     role: "Senior Physician",
     initials: "MS",
     description:
@@ -39,7 +39,7 @@ const doctors = [
       "Physiotherapy support, rehabilitation and physical mobility care.",
   },
   {
-    name: "Dr. Kamran Faiz Chatha",
+    name: "Dr. Kamran Faiz Chattha",
     role: "Orthopedic Surgeon",
     initials: "KC",
     description:
