@@ -14,96 +14,71 @@ export default function Navbar() {
     const onScroll = () => {
       const offset = window.scrollY;
       setScrolled(offset > 60);
-
       const about = document.getElementById('about');
       setShowLogo(about ? about.getBoundingClientRect().top <= 80 : false);
-
       const sections = sectionLabels.map((label) =>
-        document.getElementById(label.toLowerCase().replace(/\s+/g, "-"))
+        document.getElementById(label.toLowerCase().replace(/\\s+/g, "-"))
       );
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = sections[i];
-        if (el && el.getBoundingClientRect().top <= 80) {
+        if (el && el.getBoundingClientRect().top <= 100) {
           setActiveIndex(i);
           break;
         }
       }
     };
     window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const scrollTo = (index: number) => {
-    const id = sectionLabels[index].toLowerCase().replace(/\s+/g, "-");
+    const id = sectionLabels[index].toLowerCase().replace(/\\s+/g, "-");
     const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    }
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
     setMobileOpen(false);
   };
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 h-16 transition-all duration-300 ${
-        scrolled ? "bg-surface-dark shadow-lg shadow-black/30" : "bg-transparent"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 h-full flex items-center gap-3">
-        <button
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className={`transition-opacity duration-300 ${
-            showLogo ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          <img src={`${basePath}/images/logo.jpg`} alt="Home" className="w-8 h-8 rounded-full object-cover border-2 border-gold" />
+    <nav className="fixed top-0 left-0 right-0 z-50 min-h-[76px] border-b border-[#d6b65f]/25 bg-[#080b09]/95 shadow-xl shadow-black/30 backdrop-blur-xl transition-all duration-300">
+      <div className="max-w-7xl mx-auto px-4 min-h-[76px] flex items-center gap-4">
+        <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} aria-label="Back to home"
+          className={`shrink-0 transition-opacity duration-300 ${showLogo ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
+          <img src={`${basePath}/images/logo.jpg`} alt="Zahoor Orchards" className="w-10 h-10 rounded-full object-cover border-2 border-[#d6b65f]" />
         </button>
 
-        <div className="ml-auto hidden md:flex items-center gap-1">
+        <div className="ml-auto hidden md:flex items-center justify-end gap-1.5">
           {sectionLabels.slice(1).map((label, i) => {
             const idx = i + 1;
             const isActive = activeIndex === idx;
             return (
-              <button
-                key={label}
-                onClick={() => scrollTo(idx)}
-                className={`px-3 py-2 text-sm transition-colors border-b-2 ${
-                  isActive
-                    ? "border-gold text-gold font-semibold"
-                    : "border-transparent text-text-secondary hover:text-white"
-                }`}
-              >
+              <button key={label} onClick={() => scrollTo(idx)}
+                className={`whitespace-nowrap rounded-lg px-3.5 py-3 text-[15px] lg:text-base font-semibold tracking-wide transition-all duration-200 border ${isActive
+                  ? "border-[#d6b65f]/60 bg-[#d6b65f]/15 text-[#f1d58d] shadow-sm"
+                  : "border-transparent text-white/90 hover:border-[#d6b65f]/35 hover:bg-white/10 hover:text-[#f1d58d]"}`}>
                 {label}
               </button>
             );
           })}
         </div>
 
-        <button
-          className="md:hidden ml-auto text-white"
-          onClick={() => setMobileOpen(!mobileOpen)}
-        >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M3 12h18M3 6h18M3 18h18" />
+        <button aria-label="Toggle navigation menu" aria-expanded={mobileOpen}
+          className="md:hidden ml-auto flex h-11 w-11 items-center justify-center rounded-lg border border-[#d6b65f]/40 bg-white/5 text-white hover:bg-white/10"
+          onClick={() => setMobileOpen(!mobileOpen)}>
+          <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
+            {mobileOpen ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M3 6h18M3 12h18M3 18h18" />}
           </svg>
         </button>
       </div>
 
       {mobileOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="bg-surface-dark border-t border-white/10 md:hidden"
-        >
+        <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }}
+          className="bg-[#080b09] border-t border-[#d6b65f]/25 px-4 py-3 md:hidden shadow-2xl">
           {sectionLabels.slice(1).map((label, i) => {
             const idx = i + 1;
             return (
-              <button
-                key={label}
-                onClick={() => scrollTo(idx)}
-                className={`block w-full text-left px-6 py-3 text-sm ${
-                  activeIndex === idx ? "text-gold bg-white/5" : "text-text-secondary"
-                }`}
-              >
+              <button key={label} onClick={() => scrollTo(idx)}
+                className={`block w-full rounded-lg text-left px-5 py-3.5 text-base font-semibold transition-colors ${activeIndex === idx ? "text-[#f1d58d] bg-[#d6b65f]/15" : "text-white/90 hover:bg-white/10"}`}>
                 {label}
               </button>
             );
