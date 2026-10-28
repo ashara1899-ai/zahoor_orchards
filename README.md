@@ -44,3 +44,4 @@ Static output in `out/`.
 Push to `main` — GitHub Actions builds and deploys to:
 
 **https://zahoororchards.com/**
+Website management is now controlled through Ashar's GitHub account.
