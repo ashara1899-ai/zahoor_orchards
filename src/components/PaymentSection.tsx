@@ -6,7 +6,7 @@ import SectionHeader from '@/components/SectionHeader';
 import { societyData } from '@/data/society';
 
 const formatPKR = (amount: number) =>
-  new Intl.NumberFormat('en-PK', { maximumFractionDigits: 2, minimumFractionDigits: 2 }).format(amount);
+  new Intl.NumberFormat('en-PK', { maximumFractionDigits: 0 }).format(amount);
 
 export default function PaymentSection() {
   const installmentPlans = societyData.paymentPlans.filter((plan) => plan.monthlyInstallment !== null);
@@ -111,7 +111,7 @@ export default function PaymentSection() {
             <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[#d2b66e]" />
             <div>
               <p className="font-semibold text-white">Premium plot categories</p>
-              <p className="mt-1 text-sm text-white/65">A 10% additional charge applies to park-facing and corner plots.</p>
+              <p className="mt-1 text-sm text-white/65">A 10% additional charge applies to park-facing, corner, and main boulevard plots.</p>
             </div>
           </div>
         </div>
@@ -119,7 +119,7 @@ export default function PaymentSection() {
         <div className="mt-6 flex items-start gap-3 rounded-xl border border-white/10 bg-black/40 p-5">
           <Info className="mt-0.5 h-5 w-5 shrink-0 text-[#d2b66e]" />
           <p className="text-sm leading-relaxed text-white/60">
-            {societyData.premiumNote} Monthly figures are displayed to two decimal places; the final installment can be adjusted slightly to reconcile rounding.
+            {societyData.premiumNote} Down payments and monthly installments are rounded figures. The final installment will be adjusted to reconcile the total plot price.
           </p>
         </div>
       </div>
