@@ -48,7 +48,7 @@ export default function PaymentSection() {
           <p className="mt-2 text-sm text-white/55">Select a plot size to open its complete payment schedule. Available exclusively in AA and BB Blocks.</p>
           <div className="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-5">
             {installmentPlans.map((plan, index) => {
-              const monthlyAmount = (plan.totalPrice - plan.downPayment) / 24;
+              const monthlyAmount = plan.monthlyInstallment ?? 0;
               const slug = plan.size.toLowerCase().replace(/\s+/g, '-');
               return (
                 <motion.div
@@ -136,7 +136,7 @@ export default function PaymentSection() {
         <div className="mt-6 flex items-start gap-3 rounded-xl border border-white/10 bg-black/40 p-5">
           <Info className="mt-0.5 h-5 w-5 shrink-0 text-[#d2b66e]" />
           <p className="text-sm leading-relaxed text-white/60">
-            {societyData.premiumNote} The detailed schedules calculate 24 equal installments from the balance remaining after the down payment. Displayed monthly amounts are rounded to two decimal places.
+            {societyData.premiumNote} The monthly installment shown is a rounded figure. Any remaining balance will be adjusted in the 24th and final installment. Customers may also request a customized payment plan to suit their needs by contacting the sales office.
           </p>
         </div>
       </div>
