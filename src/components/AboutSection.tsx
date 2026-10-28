@@ -1,60 +1,55 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { Leaf, HeartHandshake, Building2, Users } from 'lucide-react'
 import { societyData } from '@/data/society'
 import SectionHeader from '@/components/SectionHeader'
 
-const stats = [
-  { label: '500+ Plots', value: '500+' },
-  { label: '20+ Families', value: '20+' },
-  { label: '6 Amenities', value: '6' },
-  { label: '24/7 Security', value: '24/7' }
+const pillars = [
+  { icon: Leaf, title: 'A greener way to live', text: 'Parks, landscaped areas and open spaces that make room for fresh air, family time and a more balanced lifestyle.' },
+  { icon: Users, title: 'A community built around people', text: 'A thoughtfully planned neighbourhood where everyday convenience, connection and a sense of belonging matter.' },
+  { icon: Building2, title: 'Modern living, closer to home', text: 'Essential infrastructure and facilities designed to bring more of what families need within their own community.' },
+  { icon: HeartHandshake, title: 'A vision for Hafizabad', text: 'A long-term commitment to raising expectations for residential living and contributing positively to the city we call home.' },
 ]
 
 export default function AboutSection() {
   return (
-    <section className="bg-surface-dark py-20 px-6 md:px-20">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <SectionHeader
-            title="About Our Society"
-            subtitle="Building a Thriving Community"
-          />
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16">
-            {/* Left side - About Details */}
-            <div className="space-y-6">
-              {societyData.aboutDetails && (
-                <p className="text-text-secondary leading-relaxed text-base md:text-lg whitespace-pre-line">
-                  {societyData.aboutDetails}
-                </p>
-              )}
+    <section className="bg-[#0b0e0c] px-6 py-20 md:px-12 lg:py-28">
+      <div className="mx-auto max-w-7xl">
+        <motion.div initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }}>
+          <SectionHeader title="More Than a Place to Live" subtitle="A vision to elevate everyday life in Hafizabad" />
+          <div className="mt-12 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+            <div className="space-y-5 text-base leading-8 text-white/70 md:text-lg">
+              <p className="text-xl font-medium leading-9 text-white md:text-2xl">
+                We believe a home is more than four walls. It is the life you build around it.
+              </p>
+              <p>
+                Zahoor Orchards was envisioned with a clear purpose: to help improve the lifestyle of the people of Hafizabad by creating a thoughtfully planned residential community with the comfort, facilities and environment that modern families deserve.
+              </p>
+              <p>
+                Our ambition goes beyond developing plots. We are working to bring together well-planned roads and infrastructure, green parks and open spaces, healthcare, sports and recreation, and the everyday essentials of a connected neighbourhood.
+              </p>
+              <p>
+                Rooted in Hafizabad, our vision is to contribute to the city’s future — creating a place where families can put down roots, children can grow, neighbours can connect and residents can enjoy a more convenient, active and fulfilling way of life.
+              </p>
+              <p className="border-l-2 border-[#d6b65f] pl-5 font-medium italic text-[#e5ca83]">
+                Zahoor Orchards — shaping a better lifestyle, and a stronger sense of community.
+              </p>
             </div>
-
-            {/* Right side - Stats Grid */}
-            <div className="grid grid-cols-2 gap-4 md:gap-6">
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="bg-gradient-to-br from-gold to-gold-dark hover:from-gold-dark hover:to-gold/80 rounded-lg p-6 md:p-8 text-center text-black shadow-lg transition-all duration-300 flex flex-col items-center justify-center"
-                >
-                  <div className="text-2xl md:text-4xl font-bold mb-3">
-                    {stat.value}
-                  </div>
-                  <div className="text-xs md:text-sm font-medium opacity-95">
-                    {stat.label}
-                  </div>
-                </motion.div>
-              ))}
+            <div className="grid gap-4 sm:grid-cols-2">
+              {pillars.map((item, index) => {
+                const Icon = item.icon
+                return (
+                  <motion.div key={item.title} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.45, delay: index * 0.08 }} viewport={{ once: true }}
+                    className="rounded-2xl border border-[#c9a85c]/20 bg-gradient-to-br from-[#191d19] to-[#101310] p-6">
+                    <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl border border-[#d6b65f]/30 bg-[#d6b65f]/10 text-[#e5ca83]">
+                      <Icon size={25} strokeWidth={1.6} />
+                    </div>
+                    <h3 className="text-lg font-semibold text-white">{item.title}</h3>
+                    <p className="mt-2 text-sm leading-7 text-white/60">{item.text}</p>
+                  </motion.div>
+                )
+              })}
             </div>
           </div>
         </motion.div>
