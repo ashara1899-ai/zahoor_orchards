@@ -53,12 +53,14 @@ With wide roads, modern sewerage, and 24/7 security, we ensure a safe and comfor
   tiktok: "https://www.tiktok.com/@zahoororchards",
 
   amenities: [
-    { title: "Parks & Green Spaces", description: "Beautifully landscaped parks, children's play areas and open gym.", icon: "park" },
-    { title: "24/7 Security", description: "Trained security personnel round the clock.", icon: "security" },
-    { title: "Wide Roads", description: "30-60 ft wide carpeted roads with street lights.", icon: "road" },
-    { title: "Underground Sewerage", description: "Modern underground sewerage system for the entire society.", icon: "plumbing" },
-    { title: "Jamia Masjid", description: "A spacious mosque within walking distance.", icon: "mosque" },
-    { title: "Hospital", description: "A hospital offering a wide variety of health facilities.", icon: "hospital" },
+    { title: "Parks & Landscaped Greenery", description: "Beautifully planned parks, family recreation areas and landscaped green spaces.", icon: "park" },
+    { title: "Open Spaces", description: "Dedicated open areas that bring breathing room, greenery and a more spacious community environment.", icon: "open-space" },
+    { title: "100-Foot Main Boulevard", description: "A grand 100-foot-wide main road, supported by internal roads at least 30 feet wide.", icon: "road" },
+    { title: "Underground Sewerage", description: "An underground sewerage network designed for a cleaner, more organized community.", icon: "sewerage" },
+    { title: "Sports Complex", description: "A dedicated sports and recreation destination for an active community lifestyle.", icon: "sports" },
+    { title: "24/7 Hospital", description: "Hospital facilities available around the clock for residents and their families.", icon: "hospital" },
+    { title: "24/7 Security", description: "Security personnel on duty around the clock.", icon: "security" },
+    { title: "Jamia Masjid", description: "A spacious community mosque within the society.", icon: "mosque" },
   ] as Amenity[],
 
   paymentPlans: [
