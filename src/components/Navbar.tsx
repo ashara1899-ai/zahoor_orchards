@@ -10,6 +10,8 @@ export default function Navbar() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  const sectionId = (label: string) => label.toLowerCase().replace(/\s+/g, "-");
+
   useEffect(() => {
     const onScroll = () => {
       const offset = window.scrollY;
@@ -17,7 +19,7 @@ export default function Navbar() {
       const about = document.getElementById('about');
       setShowLogo(about ? about.getBoundingClientRect().top <= 80 : false);
       const sections = sectionLabels.map((label) =>
-        document.getElementById(label.toLowerCase().replace(/\\s+/g, "-"))
+        document.getElementById(sectionId(label))
       );
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = sections[i];
@@ -33,7 +35,7 @@ export default function Navbar() {
   }, []);
 
   const scrollTo = (index: number) => {
-    const id = sectionLabels[index].toLowerCase().replace(/\\s+/g, "-");
+    const id = sectionId(sectionLabels[index]);
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
     setMobileOpen(false);
