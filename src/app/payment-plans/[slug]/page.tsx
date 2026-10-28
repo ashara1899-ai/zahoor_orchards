@@ -134,7 +134,7 @@ export default async function PaymentPlanPage({ params }: { params: Promise<{ sl
           <div className="mt-5 rounded-xl border border-[#b99a55]/25 bg-[#15120c] p-5">
             <p className="font-semibold text-white">Need a payment plan that suits you?</p>
             <p className="mt-1 text-sm leading-relaxed text-white/65">Your payment plan can be adjusted or customized according to your needs. Please contact the Zahoor Orchards sales office, and our team will assist you in creating a suitable payment plan.</p>
-            <a href={`tel:${societyData.phone.replace(/\\s/g, '')}`} className="mt-3 inline-flex font-semibold text-[#e2c477] hover:text-white">Call sales office: {societyData.phone}</a>
+            <a href="tel:03338073719" className="mt-3 inline-flex font-semibold text-[#e2c477] hover:text-white">Call: 0333 8073719</a>
           </div>
         )}
       </div>
