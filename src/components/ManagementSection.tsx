@@ -5,6 +5,10 @@ import { societyData } from '@/data/society'
 import SectionHeader from '@/components/SectionHeader'
 
 export default function ManagementSection() {
+  const otherMembers = (societyData.management || []).filter(
+    (member) => member.name !== 'Ashar Ali Sheikh'
+  )
+
   return (
     <section className="bg-[#000000] py-20 px-6 md:px-20">
       <div className="max-w-7xl mx-auto">
@@ -15,42 +19,83 @@ export default function ManagementSection() {
           viewport={{ once: true }}
         >
           <SectionHeader
-            title="Management Team"
-            subtitle="Meet the visionary leaders guiding Zahoor Orchards"
+            title="Leadership & Management"
+            subtitle="The people and vision behind Zahoor Orchards"
           />
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mt-12">
-            {(societyData.management || []).map((member, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-card-bg rounded-xl p-6 text-center hover:shadow-lg transition-shadow duration-300"
-              >
-                {/* Person Icon */}
-                <div className="flex justify-center mb-4">
-                  <svg
-                    className="w-8 h-8 md:w-8 md:h-8 text-gold"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-                  </svg>
+          <motion.article
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65 }}
+            viewport={{ once: true }}
+            className="mt-12 overflow-hidden rounded-2xl border border-[#b89552]/40 bg-gradient-to-br from-[#171512] via-[#0d0d0d] to-black shadow-2xl"
+          >
+            <div className="grid md:grid-cols-[minmax(280px,0.82fr)_1.5fr]">
+              <div className="relative min-h-[360px] md:min-h-[560px]">
+                <img
+                  src="/images/ashar.jpg"
+                  alt="Ashar Ali Sheikh, Director of Administration and Sales & Marketing Administrator at Zahoor Orchards"
+                  className="absolute inset-0 h-full w-full object-cover object-center"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:to-[#171512]/35" />
+                <div className="absolute bottom-5 left-5 rounded-full border border-[#d6b56e]/60 bg-black/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-[#e3c47f]">
+                  Leadership
                 </div>
+              </div>
 
-                {/* Name */}
-                <h3 className="text-white font-semibold text-base md:text-lg mb-2">
-                  {member.name}
-                </h3>
-
-                {/* Role */}
-                <p className="text-text-secondary text-xs md:text-sm">
-                  {member.role}
+              <div className="flex flex-col justify-center p-7 md:p-12 lg:p-14">
+                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.28em] text-[#c7a45f]">
+                  Director of Administration
                 </p>
-              </motion.div>
-            ))}
+                <h3 className="font-serif text-3xl leading-tight text-white md:text-4xl lg:text-5xl">
+                  Ashar Ali Sheikh
+                </h3>
+                <p className="mt-3 text-sm font-medium leading-relaxed text-[#d5bd8a] md:text-base">
+                  Director of Administration <span className="px-2 text-[#806a43]">|</span> Sales &amp; Marketing Administrator
+                </p>
+
+                <div className="my-7 h-px w-20 bg-[#c7a45f]" />
+
+                <p className="text-base leading-8 text-[#d4d0c8] md:text-lg">
+                  An engineer by education and a community-builder by ambition, Ashar Ali Sheikh brings a hands-on, forward-looking perspective to the growth of Zahoor Orchards. A graduate in Electrical Engineering from the National University of Sciences &amp; Technology (NUST), H-12, he has been part of the journey since the project’s inception.
+                </p>
+                <p className="mt-5 text-base leading-8 text-[#d4d0c8] md:text-lg">
+                  Ashar leads the day-to-day administration and operations of the project, while steering its sales and marketing efforts. With a focus on execution, service, and long-term value, he works to turn the vision for Zahoor Orchards into a thoughtfully planned and thriving community.
+                </p>
+                <p className="mt-5 text-base leading-8 text-[#d4d0c8] md:text-lg">
+                  His ambition is to help shape a new benchmark for living in Hafizabad—bringing together modern infrastructure, green spaces, meaningful amenities, and a strong sense of community. For Ashar, Zahoor Orchards is more than a development; it is an opportunity to help evolve the way the city lives, grows, and looks to the future.
+                </p>
+              </div>
+            </div>
+          </motion.article>
+
+          <div className="mt-16">
+            <h3 className="mb-8 text-center font-serif text-2xl text-white md:text-3xl">
+              The Management Team
+            </h3>
+            <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5 md:gap-6">
+              {otherMembers.map((member, index) => (
+                <motion.div
+                  key={member.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.45, delay: index * 0.06 }}
+                  viewport={{ once: true }}
+                  className="rounded-xl border border-white/10 bg-[#151515] p-5 text-center transition-colors duration-300 hover:border-[#b89552]/50"
+                >
+                  <div className="mb-4 flex justify-center">
+                    <svg className="h-8 w-8 text-[#c7a45f]" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                    </svg>
+                  </div>
+                  <h4 className="mb-2 text-sm font-semibold text-white md:text-base">
+                    {member.name}
+                  </h4>
+                  <p className="text-xs text-[#b7b0a3] md:text-sm">{member.role}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </motion.div>
       </div>
