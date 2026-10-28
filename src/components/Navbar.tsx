@@ -65,6 +65,9 @@ export default function Navbar() {
           <Link href="/indoor-cricket-arena" className={linkClass(pathname === "/indoor-cricket-arena")}>
             Indoor Cricket Arena
           </Link>
+          <Link href="/ali-poly-clinic" className={linkClass(pathname === "/ali-poly-clinic")}>
+            Ali Poly Clinic
+          </Link>
         </div>
 
         <button aria-label="Toggle navigation menu" aria-expanded={mobileOpen}
@@ -91,6 +94,10 @@ export default function Navbar() {
           <Link href="/indoor-cricket-arena" onClick={() => setMobileOpen(false)}
             className={`block w-full rounded-lg text-left px-5 py-3.5 text-base font-semibold ${pathname === "/indoor-cricket-arena" ? "text-[#f1d58d] bg-[#d6b65f]/15" : "text-white/90 hover:bg-white/10"}`}>
             Indoor Cricket Arena
+          </Link>
+          <Link href="/ali-poly-clinic" onClick={() => setMobileOpen(false)}
+            className={`block w-full rounded-lg text-left px-5 py-3.5 text-base font-semibold ${pathname === "/ali-poly-clinic" ? "text-[#f1d58d] bg-[#d6b65f]/15" : "text-white/90 hover:bg-white/10"}`}>
+            Ali Poly Clinic
           </Link>
         </motion.div>
       )}
