@@ -1,81 +1,44 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { Trees, ShieldCheck, Route, Waves, Landmark, Hospital, Dumbbell } from 'lucide-react'
 import { societyData, type Amenity } from '@/data/society'
 import SectionHeader from '@/components/SectionHeader'
 
-// Map amenity types to emoji icons
-const iconMap: Record<string, string> = {
-  park: '🌳',
-  security: '🛡️',
-  road: '🛣️',
-  plumbing: '🔧',
-  mosque: '🕌',
-  hospital: '🏥',
+const iconMap: Record<string, React.ElementType> = {
+  park: Trees,
+  security: ShieldCheck,
+  road: Route,
+  sewerage: Waves,
+  mosque: Landmark,
+  hospital: Hospital,
+  sports: Dumbbell,
+  'open-space': Trees,
 }
 
 export default function AmenitiesSection() {
   const amenities = societyData?.amenities || []
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, ease: 'easeOut' as const },
-    },
-  }
-
   return (
-    <section className="bg-[#000000] py-16 md:py-24 lg:py-32">
+    <section className="bg-[#050706] py-16 md:py-24 lg:py-28">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <SectionHeader
-            title="Amenities"
-            subtitle="World-class facilities and services for your comfort"
-          />
-
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-          >
-          {amenities.map((amenity: Amenity, index: number) => (
-            <motion.div
-              key={index}
-              variants={itemVariants}
-              className="bg-[#121212] rounded-xl p-6 border border-white/5 hover:border-white/10 transition-all duration-300 hover:shadow-lg hover:shadow-white/5"
-            >
-              <div className="text-5xl mb-4 inline-block">
-                {iconMap[amenity.icon] || '✨'}
-              </div>
-              <h3 className="text-white text-base font-semibold mt-2">
-                {amenity.title}
-              </h3>
-              <p className="text-text-secondary text-sm mt-1">
-                {amenity.description}
-              </p>
-            </motion.div>
-          ))}
-        </motion.div>
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }}>
+          <SectionHeader title="Amenities & Infrastructure" subtitle="Thoughtfully planned spaces and essential facilities for a better everyday life" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-12">
+            {amenities.map((amenity: Amenity, index: number) => {
+              const Icon = iconMap[amenity.icon] || Trees
+              return (
+                <motion.article key={amenity.title} initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.45, delay: index * 0.06 }} viewport={{ once: true, amount: 0.2 }}
+                  className="group relative overflow-hidden rounded-2xl border border-[#c9a85c]/20 bg-gradient-to-br from-[#171b17] to-[#0c100d] p-6 md:p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[#d8b968]/60 hover:shadow-xl hover:shadow-[#c9a85c]/10">
+                  <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl border border-[#c9a85c]/30 bg-[#c9a85c]/10 text-[#e4c77e] transition-colors group-hover:bg-[#c9a85c]/20">
+                    <Icon size={29} strokeWidth={1.6} aria-hidden="true" />
+                  </div>
+                  <h3 className="text-lg font-semibold tracking-wide text-white">{amenity.title}</h3>
+                  <p className="mt-2 text-sm leading-7 text-white/65">{amenity.description}</p>
+                  <div className="absolute bottom-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-[#c9a85c]/40 to-transparent" />
+                </motion.article>
+              )
+            })}
+          </div>
         </motion.div>
       </div>
     </section>
