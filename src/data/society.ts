@@ -62,14 +62,14 @@ With wide roads, modern sewerage, and 24/7 security, we ensure a safe and comfor
   ] as Amenity[],
 
   paymentPlans: [
-    { size: "3 Marla", totalPrice: 2400000, downPayment: 800000, monthlyInstallment: 66666.67, paymentMode: "24 monthly installments" },
-    { size: "5 Marla", dimensions: "25 × 45 ft", totalPrice: 4000000, downPayment: 1333333.33, monthlyInstallment: 111111.11, paymentMode: "24 monthly installments" },
-    { size: "10 Marla", dimensions: "35 × 65 ft", totalPrice: 8000000, downPayment: 2666666.67, monthlyInstallment: 222222.22, paymentMode: "24 monthly installments" },
+    { size: "3 Marla", totalPrice: 2400000, downPayment: 800000, monthlyInstallment: 65000, paymentMode: "24 monthly installments" },
+    { size: "5 Marla", dimensions: "25 × 45 ft", totalPrice: 4000000, downPayment: 1350000, monthlyInstallment: 110000, paymentMode: "24 monthly installments" },
+    { size: "10 Marla", dimensions: "35 × 65 ft", totalPrice: 8000000, downPayment: 2650000, monthlyInstallment: 220000, paymentMode: "24 monthly installments" },
     { size: "1 Kanal", dimensions: "50 × 90 ft", totalPrice: 16000000, downPayment: 16000000, monthlyInstallment: null, paymentMode: "Full payment only" },
   ] as PaymentTier[],
 
   premiumNote:
-    "Prices are based on PKR 8 Lac per Marla. Installment plans are available only in AA and BB Blocks. A and B Blocks are cash-only. A 10% premium applies to park-facing and corner plots. Installments begin in December 2026. The final installment may be adjusted slightly for rounding. Confirm plot-specific availability with the sales office.",
+    "Prices are based on PKR 8 Lac per Marla. Installment plans are available only in AA and BB Blocks. A and B Blocks are cash-only. A 10% additional charge applies to park-facing, corner, and main boulevard plots. Installments begin in December 2026. The down payments and monthly installments are rounded figures. The final installment will be adjusted to reconcile the total plot price. Confirm plot-specific availability with the sales office.",
 
   management: [
     { name: "Dr Muzaffar Ali Sheikh", role: "Founder" },
