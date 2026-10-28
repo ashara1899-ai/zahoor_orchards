@@ -6,7 +6,7 @@ import SectionHeader from '@/components/SectionHeader'
 
 export default function ManagementSection() {
   const otherMembers = (societyData.management || []).filter(
-    (member) => member.name !== 'Ashar Ali Sheikh'
+    (member) => member.name !== 'Ashar Ali Sheikh' && member.name !== 'Dr Muzaffar Ali Sheikh'
   )
 
   return (
@@ -32,6 +32,56 @@ export default function ManagementSection() {
           >
             <div className="grid md:grid-cols-[minmax(280px,0.82fr)_1.5fr]">
               <div className="relative min-h-[360px] md:min-h-[560px]">
+                <img
+                  src="/images/dr%20muzaffar.jpeg"
+                  alt="Dr. Muzaffar Ali Sheikh, Founder of Zahoor Orchards"
+                  className="absolute inset-0 h-full w-full object-cover object-center"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:to-[#171512]/35" />
+                <div className="absolute bottom-5 left-5 rounded-full border border-[#d6b56e]/60 bg-black/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-[#e3c47f]">
+                  Founder
+                </div>
+              </div>
+
+              <div className="flex flex-col justify-center p-7 md:p-12 lg:p-14">
+                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.28em] text-[#c7a45f]">
+                  Founder
+                </p>
+                <h3 className="font-serif text-3xl leading-tight text-white md:text-4xl lg:text-5xl">
+                  Dr. Muzaffar Ali Sheikh
+                </h3>
+                <p className="mt-3 text-sm font-medium leading-relaxed text-[#d5bd8a] md:text-base">
+                  Physician <span className="px-2 text-[#806a43]">|</span> Former Member of the Provincial Assembly
+                </p>
+
+                <div className="my-7 h-px w-20 bg-[#c7a45f]" />
+
+                <p className="text-base leading-8 text-[#d4d0c8] md:text-lg">
+                  Dr. Muzaffar Ali Sheikh is a physician, former parliamentarian, and dedicated public servant whose life’s work has been closely connected to the people of Hafizabad. After earning an MBBS from Nishtar Medical College in 1985 and obtaining the MRCGP qualification from the United Kingdom, Dr. Muzaffar Ali Sheikh has devoted more than four decades to medicine and the well-being of the community.
+                </p>
+                <p className="mt-5 text-base leading-8 text-[#d4d0c8] md:text-lg">
+                  Dr. Muzaffar Ali Sheikh has also represented Hafizabad in the Punjab Provincial Assembly, serving two terms from 2002 to 2008 and from 2018 to 2022. Across medicine and public life, the guiding purpose has remained the same: serving people, strengthening the community, and helping create a better future for the city.
+                </p>
+                <p className="mt-5 text-base leading-8 text-[#d4d0c8] md:text-lg">
+                  That commitment finds another expression in Zahoor Orchards. Named in honour of his father, Sheikh Zahoor Hussain, the project reflects Dr. Muzaffar Ali Sheikh’s ambition to create a residential community that brings a more elevated way of living to Hafizabad. It is envisioned as a place where thoughtful planning, quality infrastructure, generous green spaces, and modern amenities come together to enrich everyday life.
+                </p>
+                <p className="mt-5 text-base leading-8 text-[#d4d0c8] md:text-lg">
+                  For Dr. Muzaffar Ali Sheikh, Zahoor Orchards is more than a real estate development. It is a tribute to family, a commitment to the people of Hafizabad, and a lasting investment in the city’s future—a legacy intended to be experienced by generations to come.
+                </p>
+              </div>
+            </div>
+          </motion.article>
+
+          <motion.article
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, delay: 0.08 }}
+            viewport={{ once: true }}
+            className="mt-10 overflow-hidden rounded-2xl border border-[#b89552]/30 bg-gradient-to-br from-[#171512] via-[#0d0d0d] to-black shadow-2xl"
+          >
+            <div className="grid md:grid-cols-[minmax(280px,0.82fr)_1.5fr]">
+              <div className="relative min-h-[340px] md:min-h-[500px]">
                 <img
                   src="/images/ashar.jpeg"
                   alt="Ashar Ali Sheikh, Director of Administration and Sales & Marketing Administrator at Zahoor Orchards"
