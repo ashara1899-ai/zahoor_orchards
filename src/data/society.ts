@@ -46,7 +46,7 @@ With wide roads, modern sewerage, and 24/7 security, we ensure a safe and comfor
 
   phone: "0333 8073719",
   email: "info@zahoororchards.com",
-  address: "Main Office, Zahoor Orchards,\\nMadhrianwala Bypass, 52110",
+  address: "Main Office, Zahoor Orchards, Madhrianwala Bypass, Hafizabad",
   mapUrl: "https://maps.app.goo.gl/fHTe6VDyBv4uGgUBA",
   facebook: "https://www.facebook.com/zahoororchards/",
   instagram: "https://www.instagram.com/zahoororchards/",
