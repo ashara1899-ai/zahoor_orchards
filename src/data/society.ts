@@ -29,7 +29,7 @@ export interface NewsItem {
   excerpt: string;
 }
 
-export const basePath = '/zahoor_orchards';
+export const basePath = '';
 
 export const societyData = {
   name: "Zahoor Orchards",
@@ -43,61 +43,25 @@ With wide roads, modern sewerage, and 24/7 security, we ensure a safe and comfor
 
   phone: "0333 8073719",
   email: "info@zahoororchards.com",
-  address: "Main Office, Zahoor Orchards,\nMadhrianwala Bypass, 52110",
+  address: "Main Office, Zahoor Orchards,\\nMadhrianwala Bypass, 52110",
   mapUrl: "https://maps.app.goo.gl/fHTe6VDyBv4uGgUBA",
   facebook: "https://www.facebook.com/zahoororchards/",
   instagram: "https://www.instagram.com/zahoororchards/",
   tiktok: "https://www.tiktok.com/@zahoororchards",
 
   amenities: [
-    {
-      title: "Parks & Green Spaces",
-      description: "Beautifully landscaped parks, children's play areas and open gym.",
-      icon: "park",
-    },
-    {
-      title: "24/7 Security",
-      description: "Trained security personnel round the clock.",
-      icon: "security",
-    },
-    {
-      title: "Wide Roads",
-      description: "30-60 ft wide carpeted roads with street lights.",
-      icon: "road",
-    },
-    {
-      title: "Underground Sewerage",
-      description: "Modern underground sewerage system for the entire society.",
-      icon: "plumbing",
-    },
-    {
-      title: "Jamia Masjid",
-      description: "A spacious mosque within walking distance.",
-      icon: "mosque",
-    },
-    {
-      title: "Hospital",
-      description: "A hospital offering a wide variety of health facilities.",
-      icon: "hospital",
-    },
+    { title: "Parks & Green Spaces", description: "Beautifully landscaped parks, children's play areas and open gym.", icon: "park" },
+    { title: "24/7 Security", description: "Trained security personnel round the clock.", icon: "security" },
+    { title: "Wide Roads", description: "30-60 ft wide carpeted roads with street lights.", icon: "road" },
+    { title: "Underground Sewerage", description: "Modern underground sewerage system for the entire society.", icon: "plumbing" },
+    { title: "Jamia Masjid", description: "A spacious mosque within walking distance.", icon: "mosque" },
+    { title: "Hospital", description: "A hospital offering a wide variety of health facilities.", icon: "hospital" },
   ] as Amenity[],
 
   paymentPlans: [
-    {
-      size: "5 Marla",
-      dimensions: "25 × 45 ft",
-      totalPrice: "PKR 40 Lac",
-    },
-    {
-      size: "10 Marla",
-      dimensions: "35 × 65 ft",
-      totalPrice: "PKR 80 Lac",
-    },
-    {
-      size: "1 Kanal",
-      dimensions: "50 × 90 ft",
-      totalPrice: "PKR 160 Lac",
-    },
+    { size: "5 Marla", dimensions: "25 × 45 ft", totalPrice: "PKR 40 Lac" },
+    { size: "10 Marla", dimensions: "35 × 65 ft", totalPrice: "PKR 80 Lac" },
+    { size: "1 Kanal", dimensions: "50 × 90 ft", totalPrice: "PKR 160 Lac" },
   ] as PaymentTier[],
 
   premiumNote:
@@ -123,21 +87,9 @@ With wide roads, modern sewerage, and 24/7 security, we ensure a safe and comfor
   ] as Plot[],
 
   news: [
-    {
-      title: "Inauguration Ceremony of Main Gate",
-      date: "March 15, 2026",
-      excerpt: "The grand inauguration of the main entrance gate was held with distinguished guests.",
-    },
-    {
-      title: "New Park Development Completed",
-      date: "February 10, 2026",
-      excerpt: "The central park with walking tracks and children's play area is now open.",
-    },
-    {
-      title: "Road Paving Underway",
-      date: "January 5, 2026",
-      excerpt: "Internal road network paving is in progress. Block A and B completed.",
-    },
+    { title: "Inauguration Ceremony of Main Gate", date: "March 15, 2026", excerpt: "The grand inauguration of the main entrance gate was held with distinguished guests." },
+    { title: "New Park Development Completed", date: "February 10, 2026", excerpt: "The central park with walking tracks and children's play area is now open." },
+    { title: "Road Paving Underway", date: "January 5, 2026", excerpt: "Internal road network paving is in progress. Block A and B completed." },
   ] as NewsItem[],
 
   galleryImages: [
@@ -151,13 +103,6 @@ With wide roads, modern sewerage, and 24/7 security, we ensure a safe and comfor
 };
 
 export const sectionLabels = [
-  "Home",
-  "About",
-  "Amenities",
-  "Gallery",
-  "Plots",
-  "Payment Plan",
-  "Management",
-  "News",
-  "Contact",
+  "Home", "About", "Amenities", "Gallery", "Plots", "Payment Plan",
+  "Management", "News", "Contact",
 ];
