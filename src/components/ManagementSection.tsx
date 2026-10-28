@@ -33,7 +33,7 @@ export default function ManagementSection() {
             <div className="grid md:grid-cols-[minmax(280px,0.82fr)_1.5fr]">
               <div className="relative min-h-[360px] md:min-h-[560px]">
                 <img
-                  src="/images/ashar.jpg"
+                  src="/images/ashar.jpeg"
                   alt="Ashar Ali Sheikh, Director of Administration and Sales & Marketing Administrator at Zahoor Orchards"
                   className="absolute inset-0 h-full w-full object-cover object-center"
                   loading="lazy"
