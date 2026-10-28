@@ -11,21 +11,16 @@ export interface TeamMember {
 }
 
 export interface Plot {
-  id: string;
   size: string;
+  dimensions: string;
   price: string;
-  status: "Available" | "Sold";
   category: string;
 }
 
 export interface PaymentTier {
   size: string;
+  dimensions: string;
   totalPrice: string;
-  downPayment: string;
-  monthly: string;
-  duration: string;
-  isFullPayment?: boolean;
-  note?: string;
 }
 
 export interface NewsItem {
@@ -89,38 +84,24 @@ With wide roads, modern sewerage, and 24/7 security, we ensure a safe and comfor
 
   paymentPlans: [
     {
-      size: "3 Marla",
-      totalPrice: "PKR 1,800,000",
-      downPayment: "PKR 600,000",
-      monthly: "PKR 50,000",
-      duration: "24 Months",
-    },
-    {
       size: "5 Marla",
-      totalPrice: "PKR 3,000,000",
-      downPayment: "PKR 1,000,000",
-      monthly: "PKR 80,000",
-      duration: "24 Months",
+      dimensions: "25 × 45 ft",
+      totalPrice: "PKR 40 Lac",
     },
     {
       size: "10 Marla",
-      totalPrice: "PKR 6,000,000",
-      downPayment: "PKR 2,000,000",
-      monthly: "PKR 160,000",
-      duration: "24 Months",
+      dimensions: "35 × 65 ft",
+      totalPrice: "PKR 80 Lac",
     },
     {
       size: "1 Kanal",
-      totalPrice: "PKR 12,000,000",
-      downPayment: "Full Payment",
-      monthly: "—",
-      duration: "—",
-      isFullPayment: true,
+      dimensions: "50 × 90 ft",
+      totalPrice: "PKR 160 Lac",
     },
   ] as PaymentTier[],
 
   premiumNote:
-    "10% additional charges for premium plots facing park, corner and main boulevard.",
+    "These are general residential base prices. Please contact the sales office to confirm plot-specific pricing and availability.",
 
   management: [
     { name: "Dr Muzaffar Ali Sheikh", role: "Founder" },
@@ -136,14 +117,9 @@ With wide roads, modern sewerage, and 24/7 security, we ensure a safe and comfor
   ] as TeamMember[],
 
   plots: [
-    { id: "A-01", size: "5 Marla (125 sq.yds)", price: "PKR 2,500,000", status: "Available", category: "Residential" },
-    { id: "A-02", size: "5 Marla (125 sq.yds)", price: "PKR 2,500,000", status: "Sold", category: "Residential" },
-    { id: "B-01", size: "10 Marla (250 sq.yds)", price: "PKR 4,800,000", status: "Available", category: "Residential" },
-    { id: "B-02", size: "10 Marla (250 sq.yds)", price: "PKR 4,800,000", status: "Available", category: "Residential" },
-    { id: "C-01", size: "1 Kanal (500 sq.yds)", price: "PKR 9,000,000", status: "Available", category: "Residential" },
-    { id: "C-02", size: "1 Kanal (500 sq.yds)", price: "PKR 9,000,000", status: "Sold", category: "Residential" },
-    { id: "COM-01", size: "4 Marla (100 sq.yds)", price: "PKR 5,500,000", status: "Available", category: "Commercial" },
-    { id: "COM-02", size: "8 Marla (200 sq.yds)", price: "PKR 10,000,000", status: "Available", category: "Commercial" },
+    { size: "5 Marla", dimensions: "25 × 45 ft", price: "PKR 40 Lac", category: "Residential" },
+    { size: "10 Marla", dimensions: "35 × 65 ft", price: "PKR 80 Lac", category: "Residential" },
+    { size: "1 Kanal", dimensions: "50 × 90 ft", price: "PKR 160 Lac", category: "Residential" },
   ] as Plot[],
 
   news: [
