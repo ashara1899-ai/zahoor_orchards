@@ -2,25 +2,24 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { sectionLabels, basePath } from "@/data/society";
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [showLogo, setShowLogo] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
 
   const sectionId = (label: string) => label.toLowerCase().replace(/\s+/g, "-");
 
   useEffect(() => {
+    if (pathname !== "/") return;
     const onScroll = () => {
-      const offset = window.scrollY;
-      setScrolled(offset > 60);
       const about = document.getElementById('about');
       setShowLogo(about ? about.getBoundingClientRect().top <= 80 : false);
-      const sections = sectionLabels.map((label) =>
-        document.getElementById(sectionId(label))
-      );
+      const sections = sectionLabels.map((label) => document.getElementById(sectionId(label)));
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = sections[i];
         if (el && el.getBoundingClientRect().top <= 100) {
@@ -32,7 +31,7 @@ export default function Navbar() {
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [pathname]);
 
   const scrollTo = (index: number) => {
     const id = sectionId(sectionLabels[index]);
@@ -41,27 +40,31 @@ export default function Navbar() {
     setMobileOpen(false);
   };
 
+  const linkClass = (active: boolean) => `whitespace-nowrap rounded-lg px-3.5 py-3 text-[15px] lg:text-base font-semibold tracking-wide transition-all duration-200 border ${active
+    ? "border-[#d6b65f]/60 bg-[#d6b65f]/15 text-[#f1d58d] shadow-sm"
+    : "border-transparent text-white/90 hover:border-[#d6b65f]/35 hover:bg-white/10 hover:text-[#f1d58d]"}`;
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 min-h-[76px] border-b border-[#d6b65f]/25 bg-[#080b09]/95 shadow-xl shadow-black/30 backdrop-blur-xl transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 min-h-[76px] flex items-center gap-4">
-        <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} aria-label="Back to home"
-          className={`shrink-0 transition-opacity duration-300 ${showLogo ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
+        <Link href="/" aria-label="Zahoor Orchards home" className="shrink-0">
           <img src={`${basePath}/images/logo.jpg`} alt="Zahoor Orchards" className="w-10 h-10 rounded-full object-cover border-2 border-[#d6b65f]" />
-        </button>
+        </Link>
 
         <div className="ml-auto hidden md:flex items-center justify-end gap-1.5">
           {sectionLabels.slice(1).map((label, i) => {
             const idx = i + 1;
-            const isActive = activeIndex === idx;
+            const isActive = pathname === "/" && activeIndex === idx;
             return (
-              <button key={label} onClick={() => scrollTo(idx)}
-                className={`whitespace-nowrap rounded-lg px-3.5 py-3 text-[15px] lg:text-base font-semibold tracking-wide transition-all duration-200 border ${isActive
-                  ? "border-[#d6b65f]/60 bg-[#d6b65f]/15 text-[#f1d58d] shadow-sm"
-                  : "border-transparent text-white/90 hover:border-[#d6b65f]/35 hover:bg-white/10 hover:text-[#f1d58d]"}`}>
+              <button key={label} onClick={() => pathname === "/" ? scrollTo(idx) : (window.location.href = `/#${sectionId(label)}`)}
+                className={linkClass(isActive)}>
                 {label}
               </button>
             );
           })}
+          <Link href="/indoor-cricket-arena" className={linkClass(pathname === "/indoor-cricket-arena")}>
+            Indoor Cricket Arena
+          </Link>
         </div>
 
         <button aria-label="Toggle navigation menu" aria-expanded={mobileOpen}
@@ -79,12 +82,16 @@ export default function Navbar() {
           {sectionLabels.slice(1).map((label, i) => {
             const idx = i + 1;
             return (
-              <button key={label} onClick={() => scrollTo(idx)}
-                className={`block w-full rounded-lg text-left px-5 py-3.5 text-base font-semibold transition-colors ${activeIndex === idx ? "text-[#f1d58d] bg-[#d6b65f]/15" : "text-white/90 hover:bg-white/10"}`}>
+              <button key={label} onClick={() => pathname === "/" ? scrollTo(idx) : (window.location.href = `/#${sectionId(label)}`)}
+                className={`block w-full rounded-lg text-left px-5 py-3.5 text-base font-semibold transition-colors ${pathname === "/" && activeIndex === idx ? "text-[#f1d58d] bg-[#d6b65f]/15" : "text-white/90 hover:bg-white/10"}`}>
                 {label}
               </button>
             );
           })}
+          <Link href="/indoor-cricket-arena" onClick={() => setMobileOpen(false)}
+            className={`block w-full rounded-lg text-left px-5 py-3.5 text-base font-semibold ${pathname === "/indoor-cricket-arena" ? "text-[#f1d58d] bg-[#d6b65f]/15" : "text-white/90 hover:bg-white/10"}`}>
+            Indoor Cricket Arena
+          </Link>
         </motion.div>
       )}
     </nav>
