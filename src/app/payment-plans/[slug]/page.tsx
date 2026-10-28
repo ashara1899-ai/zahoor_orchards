@@ -21,8 +21,9 @@ export default async function PaymentPlanPage({ params }: { params: Promise<{ sl
   if (!plan) notFound();
 
   const eligible = plan.monthlyInstallment !== null;
-  const monthly = eligible ? (plan.totalPrice - plan.downPayment) / 24 : 0;
+  const monthly = eligible ? (plan.monthlyInstallment ?? 0) : 0;
   const balance = plan.totalPrice - plan.downPayment;
+  const finalInstallment = eligible ? balance - monthly * 23 : 0;
 
   return (
     <main className="min-h-screen bg-[#070707] px-4 pb-16 pt-28 text-white md:px-8">
@@ -53,9 +54,9 @@ export default async function PaymentPlanPage({ params }: { params: Promise<{ sl
                   <p className="mt-1 text-xs text-white/45">Payable at booking</p>
                 </div>
                 <div className="rounded-xl border border-white/10 bg-black/30 p-4">
-                  <p className="text-xs text-white/50">Each installment</p>
+                  <p className="text-xs text-white/50">Monthly installment (first 23)</p>
                   <p className="mt-2 text-xl font-semibold">Rs. {money(monthly)}</p>
-                  <p className="mt-1 text-xs text-white/45">24 equal monthly payments</p>
+                  <p className="mt-1 text-xs text-white/45">For installments 1–23</p>
                 </div>
                 <div className="rounded-xl border border-white/10 bg-black/30 p-4">
                   <p className="text-xs text-white/50">Plan duration</p>
@@ -67,7 +68,7 @@ export default async function PaymentPlanPage({ params }: { params: Promise<{ sl
                 <CalendarDays className="h-5 w-5 text-[#d2b66e]" />
                 <h2 className="text-xl font-semibold md:text-2xl">Complete payment chart</h2>
               </div>
-              <p className="mt-2 text-sm text-white/55">The down payment is due at booking. The 24 equal monthly installments begin in December 2026.</p>
+              <p className="mt-2 text-sm text-white/55">The down payment is due at booking. The 24 monthly installments begin in December 2026. The first 23 installments use the rounded monthly amount shown above; the remaining balance is adjusted in the 24th and final installment.</p>
               <div className="mt-5 overflow-hidden rounded-2xl border border-white/10">
                 <div className="overflow-x-auto">
                   <table className="w-full min-w-[560px] text-left text-sm">
@@ -87,12 +88,13 @@ export default async function PaymentPlanPage({ params }: { params: Promise<{ sl
                         <td className="px-5 py-4 text-right text-white/65">Rs. {whole(plan.downPayment)}</td>
                       </tr>
                       {Array.from({ length: 24 }, (_, index) => {
-                        const cumulative = plan.downPayment + monthly * (index + 1);
+                        const installmentAmount = index === 23 ? finalInstallment : monthly;
+                        const cumulative = plan.downPayment + monthly * Math.min(index + 1, 23) + (index === 23 ? finalInstallment : 0);
                         return (
                           <tr key={index} className="border-t border-white/10 bg-black/20 transition hover:bg-white/[0.04]">
                             <td className="px-5 py-3.5">Installment {index + 1}</td>
                             <td className="px-5 py-3.5 text-white/65">{monthLabel(index)}</td>
-                            <td className="px-5 py-3.5 text-right">Rs. {money(monthly)}</td>
+                            <td className="px-5 py-3.5 text-right">Rs. {whole(installmentAmount)}</td>
                             <td className="px-5 py-3.5 text-right text-white/65">Rs. {money(cumulative)}</td>
                           </tr>
                         );
@@ -108,7 +110,7 @@ export default async function PaymentPlanPage({ params }: { params: Promise<{ sl
                   </table>
                 </div>
               </div>
-              <p className="mt-4 text-xs leading-relaxed text-white/45">Each installment is calculated equally from the balance after the down payment. Amounts are displayed to two decimal places; minor paisa-level display rounding may apply.</p>
+              <p className="mt-4 text-xs leading-relaxed text-white/45">The first 23 monthly installments use the rounded amount shown above. Any remaining balance is added to the 24th and final installment so that the total paid equals the plot price.</p>
             </>
           ) : (
             <div className="mt-8 rounded-2xl border border-white/10 bg-black/30 p-6">
@@ -128,6 +130,13 @@ export default async function PaymentPlanPage({ params }: { params: Promise<{ sl
             <p className="mt-1 text-sm leading-relaxed text-white/60">Installment plans are available only in AA and BB Blocks and commence in December 2026. A and B Blocks are cash-only. A 10% additional charge applies to park-facing, corner, and main boulevard plots. Confirm plot-specific availability and final payable amounts with the Zahoor Orchards sales office.</p>
           </div>
         </div>
+        {eligible && (
+          <div className="mt-5 rounded-xl border border-[#b99a55]/25 bg-[#15120c] p-5">
+            <p className="font-semibold text-white">Need a payment plan that suits you?</p>
+            <p className="mt-1 text-sm leading-relaxed text-white/65">Your payment plan can be adjusted or customized according to your needs. Please contact the Zahoor Orchards sales office, and our team will assist you in creating a suitable payment plan.</p>
+            <a href={`tel:${societyData.phone.replace(/\\s/g, '')}`} className="mt-3 inline-flex font-semibold text-[#e2c477] hover:text-white">Call sales office: {societyData.phone}</a>
+          </div>
+        )}
       </div>
     </main>
   );
