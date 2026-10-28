@@ -110,6 +110,6 @@ With wide roads, modern sewerage, and 24/7 security, we ensure a safe and comfor
 };
 
 export const sectionLabels = [
-  "Home", "About", "Amenities", "Gallery", "Plots", "Payment Plan",
+  "Home", "About", "Why Zahoor Orchards", "Amenities", "Gallery", "Plots", "Payment Plan",
   "Management", "News", "Contact",
 ];
