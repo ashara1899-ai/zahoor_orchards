@@ -76,7 +76,7 @@ With wide roads, modern sewerage, and 24/7 security, we ensure a safe and comfor
   management: [
     { name: "Dr Muzaffar Ali Sheikh", role: "Founder" },
     { name: "Zafar Chishti", role: "CEO" },
-    { name: "Mian Amjab Bashir", role: "Director" },
+    { name: "Mian Amjad Bashir", role: "Director & Managing Partner" },
     { name: "Muhammad Nawaz Baloch", role: "Director" },
     { name: "Sheikh Tahir Hafeez", role: "Director" },
     { name: "Zubair Chishti", role: "Director" },
